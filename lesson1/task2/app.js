@@ -12,14 +12,14 @@ const changeFolder = async (folder) => {
   try {
     const data = await readDirPromise(folder);
     data.forEach((file) => {
-      const currentFilePath = path.join(mainFolder, file);
+      const currentFilePath = path.join(folder, file);
       statPromisify(currentFilePath, (err, stats) => {
         if (err) {
           console.log(err);
           return;
         }
         stats.isFile()
-          ? renameFile(currentFilePath, mainFolder)
+          ? renameFile(currentFilePath, path.join(mainFolder, file))
           : changeFolder(currentFilePath);
       });
     });
