@@ -97,8 +97,7 @@ app.get("/users/:user_id", async (req, res) => {
   if (!user) {
     return;
   }
-
-  return res.render("user", { user });
+  return res.render("user", { ...user });
 });
 
 app.listen(PORT, () => {});
